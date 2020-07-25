@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
     <title>Plagiarism</title>
 </head>
 <body>
-    <h1>Plagiarism Checker!</h1>
-    <form action="/check" method="POST">
-        Input first code:
-        <textarea name="first" cols="30" rows="10"></textarea>
-        <br><br>
-        Input second code:
-        <textarea name="second" cols="30" rows="10"></textarea>
-        <br><br>
-        <button type="submit">Check!</button>
-    </form>
+    <header>
+        <h1>Plagiarism Checker!</h1>
+    </header>
+    <section>
+        <form action="/" method="POST">
+            <div class="aligned">
+                <textarea name="first" placeholder="paste your first code"><%if (firstCode) { %><%= firstCode %><% } %></textarea>
+                <textarea name="second" placeholder="paste your second code"><%if (secondCode) { %><%= secondCode %><% } %></textarea>
+            </div>
+            
+            <div class="checkBtn">
+                <button type="submit" class="btn">Check!</button>
+            </div>
+            <div class="answers">
+                W-Shingling method: 
+                <input type="text" disabled value=" <%if (WS) { %> <%= WS %>% <% } %>"></input>
+            </div>
+            <div class="answers">
+                Levenshtein distance:
+                <input type="text" disabled value=" <%if (LD) { %> <%= LD %>% <% } %>"></input>
+            </div>
+            <div class="answers">
+                Verdict:
+                <input type="text" disabled value= <% if (verdict != null) { 
+                    if (verdict) { %>"Plagiarism!"
+                    <% } else { %>"Codes look different!"
+                    <% } %>
+                <% } %></input>
+            </div>
+        </form>
+    </section>
+    <footer> Made by Bekhruz Azam &copy; 2020 </footer>
 </body>
 </html>

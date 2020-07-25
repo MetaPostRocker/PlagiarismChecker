@@ -7,7 +7,8 @@ const operators = {
     '+=': 24, '-=': 25, '*=': 26, '/=': 27, '%=': 28,
     '&=': 29, '|=': 30, '^=': 31, '<<=': 32, '>>=': 33,
     '->': 34, '.': 35, '[': 36, ']': 37,  
-    '(': 38, ')': 39, ':': 40, '': 41, '': 42, ';': 43
+    '(': 38, ')': 39, ':': 40, '': 41, '': 42, ';': 43,
+    '#': 44
 };
 
 const cycles = {
@@ -29,7 +30,9 @@ const keywords = {
     'try': 88, 'catch': 89, 'public': 90, 'reinterpret_cast': 91,
     'static_cast': 92, 'class': 93, 'return': 94, 'friend': 95,
     'virtual': 96, 'static': 97, 'inline': 98, 'delete': 99,
-    'struct': 100, 'asm': 101
+    'struct': 100, 'asm': 101, 'include': 102, 'nullptr': 103,
+    'null': 104, 'nill': 105, 'define': 106, 'typeof': 107, 
+    'using': 108, 'template': 109
 };
 
 const stringType = 111;
@@ -66,4 +69,6 @@ class Token {
     }
 }
 
-module.exports = Token;
+exports.hashConst = 127;
+exports.Token = Token;
+exports.operators = operators;
