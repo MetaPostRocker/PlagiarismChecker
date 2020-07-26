@@ -19,30 +19,30 @@ section {
 }
 
 .aligned {
-    text-align: center;
     border-bottom: 1px solid #9c9797;
 }
 
-.aligned textarea {
-    margin-top: 5px;
+#select {
+    margin-top: 10px;
     margin-left: 5%;
-    margin-bottom: 5px;
-    margin-right: 5%;
-    height: 750px;
-    width: 35%;
-    resize: none;
-
-    white-space: pre;
+    display: inline-block;
+    padding: 0.21rem 0.1rem;
+    font: inherit;
+    border: 1px solid #2e2e38;
+    color: #2e2e38;
+    background: white;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 
-textarea::placeholder {
-    text-align: center;
+#select:hover {
+    box-shadow:  0 0 2px #2e2e38;
 }
 
 .btn {
     margin-top: 10px;
-    margin-left: 9%;
+    margin-left: 1%;
     display: inline-block;
     padding: 0.25rem 1rem;
     text-decoration: none;
@@ -56,8 +56,8 @@ textarea::placeholder {
 
 .btn:hover,
 .btn:active {
-  background-color: #2e2e38;
-  color: white;
+    background-color: #2e2e38;
+    color: white;
 }
 
 .checkBtn {
@@ -66,11 +66,12 @@ textarea::placeholder {
 
 .answers {
     display: inline;
-    margin-left: 5%;
+    margin-left: 7%;
+    margin-right: 3%;
 }
 
 .answers input {
-    width: 10%;
+    width: 9%;
     font: inherit;
     color: black;
     border: none;

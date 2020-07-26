@@ -22,8 +22,8 @@ const parse = (content) => {
             }
             i++;
             forComments.push(comment);
-        } else if (content[i] == '\"' || content[i] == '\'') {                        // content types
-            let stopChar = content[i];
+        } else if (content[i] == '"' || content[i] == "'") {                        // content types
+            let stopChar = content[i++];
             let str = '';
             while (i < size && content[i] != stopChar) {
                 str += content[i++];

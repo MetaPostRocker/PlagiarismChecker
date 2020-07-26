@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
+    <script src="/codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="/codemirror/theme/seti.css">
+    <link rel="stylesheet" href="/codemirror/lib/codemirror.css">
+    <script src="/codemirror/mode/clike/clike.js"></script>
+    <script src="/codemirror/mode/d/d.js"></script>
+    <script src="/codemirror/mode/go/go.js"></script>
+    <script src="/codemirror/mode/haskell/haskell.js"></script>
+    <script src="/codemirror/mode/javascript/javascript.js"></script>
+    <script src="/codemirror/mode/pascal/pascal.js"></script>
+    <script src="/codemirror/mode/perl/perl.js"></script>
+    <script src="/codemirror/mode/php/php.js"></script>
+    <script src="/codemirror/mode/python/python.js"></script>
+    <script src="/codemirror/mode/r/r.js"></script>
+    <script src="/codemirror/mode/ruby/ruby.js"></script>
+    <script src="/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="/codemirror/addon/display/placeholder.js"></script>
     <title>Plagiarism</title>
 </head>
 <body>
@@ -13,10 +29,59 @@
     <section>
         <form action="/" method="POST">
             <div class="aligned">
-                <textarea name="first" placeholder="paste your first code"><%if (firstCode) { %><%= firstCode %><% } %></textarea>
-                <textarea name="second" placeholder="paste your second code"><%if (secondCode) { %><%= secondCode %><% } %></textarea>
+                <textarea name="first" placeholder=<% if (alarm) { %>"<%= alarm %>" <% } else {%>"paste your first code here" <% }%>><%if (firstCode) { %><%= firstCode %><% } %></textarea>
+                <textarea name="second" placeholder=<% if (alarm) { %>"<%= alarm %>" <% } else {%>"paste your second code here" <% }%>><%if (secondCode) { %><%= secondCode %><% } %></textarea>
+                <script>
+                var myFirstCodeMirror = CodeMirror.fromTextArea(document.getElementsByName('first')[0], {
+                    mode: "text/x-c++src",
+                    lineNumbers: true,
+                    autoCloseBrackets: true
+                });
+                var mySecondCodeMirror = CodeMirror.fromTextArea(document.getElementsByName('second')[0], {
+                    mode: "text/x-c++src",
+                    lineNumbers: true,
+                    autoCloseBrackets: true
+                });
+                </script>
             </div>
-            
+            <select onclick="selectTheme()" id="select">
+                <option selected>C++</option>
+                <option>D</option>
+                <option>Go</option>
+                <option>Java</option>
+                <option>Kotlin</option>
+                <option>Haskell</option>
+                <option>JavaScript</option>
+                <option>Pascal</option>
+                <option>Perl</option>
+                <option>PHP</option>
+                <option>Python</option>
+                <option>R</option>
+                <option>Ruby</option>
+            </select>
+            <script>
+                modes = {
+                    "C++": "text/x-c++src",
+                    "D": "text/x-d",
+                    "Go": "text/x-go",
+                    "Java": "text/x-java",
+                    "Kotlin": "text/x-kotlin",
+                    "Haskell": "text/x-haskell",
+                    "JavaScript": "text/javascript",
+                    "Pascal": "text/x-pascal",
+                    "Perl": "text/x-perl",
+                    "PHP": "text/x-php",
+                    "Python": "text/x-python",
+                    "R": "text/x-rsrc",
+                    "Ruby": "text/x-ruby"
+                };
+                var input = document.getElementById("select");
+                function selectTheme() {
+                  var mode = input.options[input.selectedIndex].textContent;
+                  myFirstCodeMirror.setOption("mode", modes[mode]);
+                  mySecondCodeMirror.setOption("mode", modes[mode]);
+                }
+            </script>
             <div class="checkBtn">
                 <button type="submit" class="btn">Check!</button>
             </div>
@@ -30,14 +95,12 @@
             </div>
             <div class="answers">
                 Verdict:
-                <input type="text" disabled value= <% if (verdict != null) { 
-                    if (verdict) { %>"Plagiarism!"
+                <input type="text" disabled value= <% if (verdict != null) { if (verdict) { %>"Plagiarism!"
                     <% } else { %>"Codes look different!"
-                    <% } %>
-                <% } %></input>
+                <% }} %>></input>
             </div>
         </form>
     </section>
-    <footer> Made by Bekhruz Azam &copy; 2020 </footer>
+    <footer> Made by Bekhruz Azam</footer>
 </body>
 </html>

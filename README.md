@@ -1,4 +1,4 @@
 # PlagiarismChecker
 Checks two codes on similarity
 
-Hi
+Don't forget to npm install
